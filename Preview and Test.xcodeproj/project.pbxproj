@@ -7,15 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA281F6F2AD30FA200F57272 /* Preview_and_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F6E2AD30FA200F57272 /* Preview_and_TestApp.swift */; };
+		DA281F6F2AD30FA200F57272 /* PreviewAndTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F6E2AD30FA200F57272 /* PreviewAndTest.swift */; };
 		DA281F712AD30FA200F57272 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F702AD30FA200F57272 /* ContentView.swift */; };
 		DA281F732AD30FA400F57272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA281F722AD30FA400F57272 /* Assets.xcassets */; };
 		DA281F762AD30FA400F57272 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA281F752AD30FA400F57272 /* Preview Assets.xcassets */; };
 		DA281F782AD30FA400F57272 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F772AD30FA400F57272 /* Persistence.swift */; };
-		DA281F7B2AD30FA400F57272 /* Preview_and_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA281F792AD30FA400F57272 /* Preview_and_Test.xcdatamodeld */; };
+		DA281F7B2AD30FA400F57272 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */; };
 		DA281F852AD30FA400F57272 /* Preview_and_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F842AD30FA400F57272 /* Preview_and_TestTests.swift */; };
 		DA281F8F2AD30FA400F57272 /* Preview_and_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F8E2AD30FA400F57272 /* Preview_and_TestUITests.swift */; };
 		DA281F912AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F902AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift */; };
+		DA281F9F2AD318CF00F57272 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F9E2AD318CF00F57272 /* TaskItem.swift */; };
+		DA281FA12AD31CF000F57272 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = DA281FA02AD31CF000F57272 /* tasks.json */; };
+		DA281FA32AD31D8400F57272 /* TaskItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */; };
+		DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA52AD3207F00F57272 /* Codable utilities.swift */; };
+		DA281FA82AD3277300F57272 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA72AD3277300F57272 /* Optional.swift */; };
+		DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA92AD32DE300F57272 /* TaskItemCell.swift */; };
+		DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */; };
+		DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAF2AD3C92500F57272 /* DeviceController.swift */; };
+		DA281FB22AD3C9EF00F57272 /* SensorTagProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */; };
+		DA281FB42AD3EC7400F57272 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */; };
+		DA281FB62AD3F29A00F57272 /* CC2650SensorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */; };
+		DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA782AD435520024AF24 /* Data extensions.swift */; };
+		DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */; };
+		DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +51,7 @@
 
 /* Begin PBXFileReference section */
 		DA281F6B2AD30FA200F57272 /* Preview and Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview and Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA281F6E2AD30FA200F57272 /* Preview_and_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_and_TestApp.swift; sourceTree = "<group>"; };
+		DA281F6E2AD30FA200F57272 /* PreviewAndTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAndTest.swift; sourceTree = "<group>"; };
 		DA281F702AD30FA200F57272 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA281F722AD30FA400F57272 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA281F752AD30FA400F57272 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -48,6 +62,21 @@
 		DA281F8A2AD30FA400F57272 /* Preview and TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preview and TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA281F8E2AD30FA400F57272 /* Preview_and_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_and_TestUITests.swift; sourceTree = "<group>"; };
 		DA281F902AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_and_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DA281F9E2AD318CF00F57272 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		DA281FA02AD31CF000F57272 /* tasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
+		DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemDTO.swift; sourceTree = "<group>"; };
+		DA281FA52AD3207F00F57272 /* Codable utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable utilities.swift"; sourceTree = "<group>"; };
+		DA281FA72AD3277300F57272 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		DA281FA92AD32DE300F57272 /* TaskItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemCell.swift; sourceTree = "<group>"; };
+		DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
+		DA281FAF2AD3C92500F57272 /* DeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
+		DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagProtocol.swift; sourceTree = "<group>"; };
+		DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetooth.swift; sourceTree = "<group>"; };
+		DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CC2650SensorTag.swift; sourceTree = "<group>"; };
+		DA281FB72AD3F75700F57272 /* Preview-and-Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Preview-and-Test-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DAA5BA782AD435520024AF24 /* Data extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data extensions.swift"; sourceTree = "<group>"; };
+		DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagPreview.swift; sourceTree = "<group>"; };
+		DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +127,18 @@
 		DA281F6D2AD30FA200F57272 /* Preview and Test */ = {
 			isa = PBXGroup;
 			children = (
-				DA281F6E2AD30FA200F57272 /* Preview_and_TestApp.swift */,
+				DA281FB72AD3F75700F57272 /* Preview-and-Test-Info.plist */,
+				DA281F9D2AD318C400F57272 /* Model */,
+				DA281FAE2AD3C87C00F57272 /* Web API */,
+				DA281FAD2AD3C85100F57272 /* 2650 SensorTag */,
+				DA281F6E2AD30FA200F57272 /* PreviewAndTest.swift */,
 				DA281F702AD30FA200F57272 /* ContentView.swift */,
+				DA281FA92AD32DE300F57272 /* TaskItemCell.swift */,
+				DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */,
+				DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */,
 				DA281F722AD30FA400F57272 /* Assets.xcassets */,
 				DA281F772AD30FA400F57272 /* Persistence.swift */,
-				DA281F792AD30FA400F57272 /* Preview_and_Test.xcdatamodeld */,
+				DA281FA42AD3205D00F57272 /* Utilities */,
 				DA281F742AD30FA400F57272 /* Preview Content */,
 			);
 			path = "Preview and Test";
@@ -112,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DA281F752AD30FA400F57272 /* Preview Assets.xcassets */,
+				DA281FA02AD31CF000F57272 /* tasks.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -131,6 +168,45 @@
 				DA281F902AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift */,
 			);
 			path = "Preview and TestUITests";
+			sourceTree = "<group>";
+		};
+		DA281F9D2AD318C400F57272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */,
+				DA281F9E2AD318CF00F57272 /* TaskItem.swift */,
+				DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DA281FA42AD3205D00F57272 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DA281FA52AD3207F00F57272 /* Codable utilities.swift */,
+				DA281FA72AD3277300F57272 /* Optional.swift */,
+				DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */,
+				DAA5BA782AD435520024AF24 /* Data extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		DA281FAD2AD3C85100F57272 /* 2650 SensorTag */ = {
+			isa = PBXGroup;
+			children = (
+				DA281FAF2AD3C92500F57272 /* DeviceController.swift */,
+				DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */,
+				DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */,
+				DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */,
+			);
+			path = "2650 SensorTag";
+			sourceTree = "<group>";
+		};
+		DA281FAE2AD3C87C00F57272 /* Web API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Web API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +315,7 @@
 			files = (
 				DA281F762AD30FA400F57272 /* Preview Assets.xcassets in Resources */,
 				DA281F732AD30FA400F57272 /* Assets.xcassets in Resources */,
+				DA281FA12AD31CF000F57272 /* tasks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +340,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA281F7B2AD30FA400F57272 /* Preview_and_Test.xcdatamodeld in Sources */,
+				DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */,
+				DA281FA32AD31D8400F57272 /* TaskItemDTO.swift in Sources */,
+				DA281F7B2AD30FA400F57272 /* CoreData.xcdatamodeld in Sources */,
+				DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */,
+				DA281FB42AD3EC7400F57272 /* CoreBluetooth.swift in Sources */,
+				DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */,
 				DA281F782AD30FA400F57272 /* Persistence.swift in Sources */,
+				DA281F9F2AD318CF00F57272 /* TaskItem.swift in Sources */,
 				DA281F712AD30FA200F57272 /* ContentView.swift in Sources */,
-				DA281F6F2AD30FA200F57272 /* Preview_and_TestApp.swift in Sources */,
+				DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */,
+				DA281FB62AD3F29A00F57272 /* CC2650SensorTag.swift in Sources */,
+				DA281F6F2AD30FA200F57272 /* PreviewAndTest.swift in Sources */,
+				DA281FA82AD3277300F57272 /* Optional.swift in Sources */,
+				DA281FB22AD3C9EF00F57272 /* SensorTagProtocol.swift in Sources */,
+				DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */,
+				DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */,
+				DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +523,9 @@
 				DEVELOPMENT_TEAM = WFC2CXXQSY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Preview-and-Test-Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "In order to reconnect to your device when the app ins in the background";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "in order to conect to the sensor tag";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -443,7 +536,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zafari-app.Preview-and-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = com.friismobility.preview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -462,6 +555,9 @@
 				DEVELOPMENT_TEAM = WFC2CXXQSY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Preview-and-Test-Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "In order to reconnect to your device when the app ins in the background";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "in order to conect to the sensor tag";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,7 +568,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zafari-app.Preview-and-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = com.friismobility.preview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -598,13 +694,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DA281F792AD30FA400F57272 /* Preview_and_Test.xcdatamodeld */ = {
+		DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				DA281F7A2AD30FA400F57272 /* Preview_and_Test.xcdatamodel */,
 			);
 			currentVersion = DA281F7A2AD30FA400F57272 /* Preview_and_Test.xcdatamodel */;
-			path = Preview_and_Test.xcdatamodeld;
+			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

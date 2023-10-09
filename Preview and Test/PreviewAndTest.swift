@@ -1,5 +1,5 @@
 //
-//  Preview_and_TestApp.swift
+//  PreviewAndTest.swift
 //  Preview and Test
 //
 //  Created by Per Friis on 08/10/2023.
@@ -8,13 +8,15 @@
 import SwiftUI
 
 @main
-struct Preview_and_TestApp: App {
-    let persistenceController = PersistenceController.shared
+struct PreviewAndTest: App {
+    private let persistenceController = PersistenceController.shared
+    private var deviceController = DeviceController()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(deviceController)
         }
     }
 }

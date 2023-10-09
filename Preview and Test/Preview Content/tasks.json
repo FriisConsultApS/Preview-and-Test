@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Repair Solar Panels",
+        "details": "Inspect and repair solar panels to ensure optimal energy production.",
+        "due": 2218992000,
+        "created": 2209030400,
+        "rawPriority": 1,
+        "isCompleted": false
+    },
+    {
+        "name": "Check Water Supply",
+        "details": "Conduct regular checks on water storage systems and filter replacements.",
+        "due": 2219731200,
+        "created": 2209116800,
+        "rawPriority": 2,
+        "isCompleted": false
+    },
+    {
+        "name": "Conduct Soil Analysis",
+        "details": "Collect soil samples and analyze for nutrient levels and suitability for cultivation.",
+        "due": 2220403200,
+        "created": 2209203200,
+        "rawPriority": 3,
+        "isCompleted": true
+    },
+    {
+        "name": "Mars Rover Maintenance",
+        "details": "Perform regular maintenance tasks on the Mars rover to ensure its functionality.",
+        "due": 2221075200,
+        "created": 2209289600,
+        "rawPriority": 1,
+        "isCompleted": false
+    },
+    {
+        "name": "Monitor Atmospheric Conditions",
+        "details": "Continuously monitor and record atmospheric conditions using sensors and instruments.",
+        "due": 2221747200,
+        "created": 2209376000,
+        "rawPriority": 2,
+        "isCompleted": false
+    },
+    {
+        "name": "Emergency Evacuation Drill",
+        "details": "Coordinate and conduct an emergency evacuation drill for all personnel on the base.",
+        "due": 2222419200,
+        "created": 2209462400,
+        "rawPriority": 3,
+        "isCompleted": true
+    },
+    {
+        "name": "Test Communication Systems",
+        "details": "Perform tests on communication systems to ensure proper functionality and reliability.",
+        "due": 2223091200,
+        "created": 2209548800,
+        "rawPriority": 2,
+        "isCompleted": false
+    },
+    {
+        "name": "Plant Life Support System Maintenance",
+        "details": "Maintain and repair components of the plant life support system for oxygen production.",
+        "due": 2223763200,
+        "created": 2209635200,
+        "rawPriority": 1,
+        "isCompleted": false
+    },
+    {
+        "name": "Conduct Medical Check-ups",
+        "details": "Perform regular medical check-ups on all crew members to monitor their health.",
+        "due": 2224435200,
+        "created": 2209721600,
+        "rawPriority": 3,
+        "isCompleted": true
+    },
+    {
+        "name": "Organize Research Symposium",
+        "details": "Plan and organize a research symposium to share and discuss scientific findings.",
+        "due": 2225107200,
+        "created": 2209808000,
+        "rawPriority": 2,
+        "isCompleted": false
+    }
+]

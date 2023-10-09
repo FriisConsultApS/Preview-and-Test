@@ -10,20 +10,20 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: TaskItem.defaultSort,
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var items: FetchedResults<TaskItem>
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        TaskItemView(item: item)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        TaskItemCell(item: item)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -44,8 +44,10 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = TaskItem(context: viewContext)
+            newItem.name = "new task"
+            newItem.created = Date()
+            newItem.due = Calendar.current.date(byAdding: .day, value: 7, to: .now)
 
             do {
                 try viewContext.save()
@@ -73,13 +75,6 @@ struct ContentView: View {
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

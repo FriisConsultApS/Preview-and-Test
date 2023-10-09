@@ -13,25 +13,27 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+
         do {
+            let taskDTOs = try [TaskItemDTO].load(filename: "tasks")
+            for taskDTO in taskDTOs {
+                let taskItem = TaskItem(context: viewContext)
+                taskItem.update(taskDTO)
+            }
+
             try viewContext.save()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            print(error.localizedDescription)
+            fatalError(error.localizedDescription)
         }
+
         return result
     }()
 
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Preview_and_Test")
+        container = NSPersistentContainer(name: "CoreData")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -52,5 +54,13 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+}
+
+
+extension NSManagedObjectContext {
+    /// Just a little extra shortcut for the preview viewContext
+    static var preview: NSManagedObjectContext {
+        PersistenceController.preview.container.viewContext
     }
 }
