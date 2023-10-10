@@ -7,10 +7,12 @@
 
 import SwiftUI
 import CoreData
+import AuthenticationServices
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @Environment(CloudCoordinator.self) private var cloudCoordinator
+
     @FetchRequest(
         sortDescriptors: TaskItem.defaultSort,
         animation: .default)
@@ -29,6 +31,30 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
             }
             .toolbar {
+                ToolbarItem {
+                    switch cloudCoordinator.authenticationStatus {
+                    case .unknown, .unauthorized:
+                        SignInWithAppleButton { request in
+                            request.requestedScopes = [.email, .fullName]
+                        } onCompletion: { result in
+                            switch result {
+                            case .success(let authorization):
+                                self.signIn(authorization)
+                            case .failure:
+                                break
+                            }
+                        }
+
+                    case .updating:
+                        ProgressView()
+
+
+                    default:
+                        EmptyView()
+
+                    }
+                }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
@@ -40,16 +66,18 @@ struct ContentView: View {
             }
             Text("Select an item")
         }
+        .accessibilityIdentifier("taskList")
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = TaskItem(context: viewContext)
-            newItem.name = "new task"
-            newItem.created = Date()
-            newItem.due = Calendar.current.date(byAdding: .day, value: 7, to: .now)
-
             do {
+                let dtos = try [TaskItemDTO].load(filename: "tasks")
+                for dto in dtos {
+                    let taskItem = TaskItem(context: viewContext)
+                    taskItem.update(dto)
+                    taskItem.isCompleted = false
+                }
                 try viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
@@ -74,8 +102,28 @@ struct ContentView: View {
             }
         }
     }
+
+    private func signIn(_ authorization: ASAuthorization) {
+        cloudCoordinator.signInWithApple(authorization)
+    }
 }
 
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+#Preview("Unauthorized") {
+    ContentView()
+        .environment(\.managedObjectContext, .preview)
+        .environment(CloudCoordinator.preview)
+}
+
+#Preview("Authorized") {
+    ContentView()
+        .environment(\.managedObjectContext, .preview)
+        .environment(CloudCoordinator.previewAuthorized)
+
+}
+
+#Preview("Updating") {
+    ContentView()
+        .environment(\.managedObjectContext, .preview)
+        .environment(CloudCoordinator.previewUpdating)
+
 }

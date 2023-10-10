@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct ServerInfo: Codable {
+    var name: String
+    var environment: String
+    var build: String
+}
+
+extension ServerInfo {
+    static let preview = ServerInfo(name: "server1", environment: "preview", build: "0")
+}

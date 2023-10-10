@@ -10,13 +10,42 @@ import CoreData
 
 
 extension TaskItem {
+    /// This a a patten I often use, making the SwiftUI a bit more readable, and just one place to handle the sorting order
     static let defaultSort = [
         NSSortDescriptor(keyPath: \TaskItem.due, ascending: true),
         NSSortDescriptor(keyPath: \TaskItem.rawPriority, ascending: true)
     ]
 
+    /// sort by priority
+    static let sortByPriority = [
+        NSSortDescriptor(keyPath: \TaskItem.rawPriority, ascending: true),
+        NSSortDescriptor(keyPath: \TaskItem.due, ascending: true)
+    ]
+
+    /// sort by completion
+    static let sortByCompletion = [
+        NSSortDescriptor(keyPath: \TaskItem.isCompleted, ascending: true),
+        NSSortDescriptor(keyPath: \TaskItem.due, ascending: true),
+        NSSortDescriptor(keyPath: \TaskItem.rawPriority, ascending: true)
+    ]
+
+    /// predicate to apply for "not completed task"
+    static let isNotCompletedPredicate = NSPredicate(format: "isCompleted == false")
+
+    /// predicate to apply for "completed task"
+    static let isCompletedPredicate = NSPredicate(format: "isCompleted == true")
 
 
+    var dto: TaskItemDTO {
+        .init(name: name.orEmpty, 
+              details: details.orEmpty,
+              due: due.orDistanceFuture,
+              created: created.orNow,
+              rawPriority: Int(rawPriority),
+              isCompleted: isCompleted)
+    }
+
+    /// To update task item using the DTO
     func update(_ dto: TaskItemDTO) {
         name = dto.name
         details = dto.details
@@ -29,6 +58,7 @@ extension TaskItem {
 
     // MARK: - Preview data
 
+    
     static func checkWaterSupply(in context: NSManagedObjectContext) -> TaskItem {
         let item = TaskItem(context: context)
 

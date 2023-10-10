@@ -10,13 +10,15 @@ import SwiftUI
 @main
 struct PreviewAndTest: App {
     private let persistenceController = PersistenceController.shared
-    private var deviceController = DeviceController()
+    private let deviceController = DeviceController()
+    private let cloudCoordinator = CloudCoordinator()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environment(deviceController)
+                .environment(cloudCoordinator)
         }
     }
 }

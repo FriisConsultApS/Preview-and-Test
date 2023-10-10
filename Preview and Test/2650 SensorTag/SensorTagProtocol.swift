@@ -9,10 +9,14 @@ import Foundation
 import CoreBluetooth
 import SwiftUI
 
+/// I use the protocol to hold the device, making it available for implementation in any way.
 protocol SensorTagProtocol {
     var name: String { get }
     var battery: Double { get }
     var buttons: SensorTagButtonState { get }
+    var lux: AsyncStream<Double> { get }
+    var gyroscope: AsyncStream<SIMD3<Double>> { get }
+
 
     init(_ peripheral: CBPeripheral?) async throws
 }
@@ -56,9 +60,16 @@ extension CBUUID {
 
     /// Optical Service (Light)
     static let opticalService = CBUUID(string: "F000AA70-0451-4000-B000-000000000000")
+    static let opticalData = CBUUID(string:"F000AA71-0451-4000-B000-000000000000")
+    static let opticalConfiguration = CBUUID(string:"F000AA72-0451-4000-B000-000000000000")
+    static let opticalPeriod = CBUUID(string:"F000AA73-0451-4000-B000-000000000000")
 
     /// Movement Service (Accelerometer, Gyroscope, Magnetometer)
     static let movementService = CBUUID(string: "F000AA80-0451-4000-B000-000000000000")
+
+    static let movementData = CBUUID(string: "F000AA81-0451-4000-B000-000000000000")
+    static let movementConfig = CBUUID(string: "F000AA82-0451-4000-B000-000000000000")
+    static let movementPeriod = CBUUID(string: "F000AA83-0451-4000-B000-000000000000")
 
     /// Simple Key Service
     static let simpleKeyService = CBUUID(string: "FFE0")
@@ -75,12 +86,8 @@ extension CBUUID {
 
 
     /// Gyroscope Service
-    static let gyroscopeService = CBUUID(string: "F000AA50-0451-4000-B000-000000000000")
+  //  static let motionService = CBUUID(string: "F000AA50-0451-4000-B000-000000000000")
 
-    /// Gyroscope Service Characteristics
-    static let gyroscopeData = CBUUID(string: "F000AA51-0451-4000-B000-000000000000")
-    static let gyroscopeConfig = CBUUID(string: "F000AA52-0451-4000-B000-000000000000")
-    static let gyroscopePeriod = CBUUID(string: "F000AA53-0451-4000-B000-000000000000")
 
 
     /// Test Service
@@ -108,10 +115,3 @@ extension CBUUID {
     static let regulatoryCertification = CBUUID(string: "2A2A")
     static let pnpId = CBUUID(string: "2A50")
 }
-
-import CoreBluetooth
-
-extension CBUUID {
-
-}
-

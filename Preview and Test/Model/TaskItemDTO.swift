@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// as NSManagedObject is not directly Codable, I often use a Data Transfer Object like this.
+///  This is also used by the Web API for upload and download of data
 struct TaskItemDTO: Codable {
     let name: String
     let details: String

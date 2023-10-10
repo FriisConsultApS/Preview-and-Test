@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct UserProfile: Codable {
+    var userId: String
+    var givenName: String
+    var familyName: String
+    var email: String
+    
+}
+
+
+extension UserProfile {
+    static let preview = UserProfile(userId: "1234234", givenName: "Per", familyName: "Friis", email: "per.friis@friisconsult.com")
+}

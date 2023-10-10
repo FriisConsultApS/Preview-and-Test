@@ -7,6 +7,7 @@
 
 import CoreData
 
+/// This is directly from the CoreData Template, when starting a new iOS CoreData project, with my customizations
 struct PersistenceController {
     static let shared = PersistenceController()
 
@@ -14,19 +15,19 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
 
+        // Here we are loading a json file that I have "created" using Chat.GPT.
+        // So let's take a look of that
         do {
             let taskDTOs = try [TaskItemDTO].load(filename: "tasks")
             for taskDTO in taskDTOs {
                 let taskItem = TaskItem(context: viewContext)
                 taskItem.update(taskDTO)
             }
-
             try viewContext.save()
         } catch {
             print(error.localizedDescription)
             fatalError(error.localizedDescription)
         }
-
         return result
     }()
 

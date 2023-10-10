@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import CoreData
+@testable import Preview_and_Test
 
 final class CLoudCoordinatorTests: XCTestCase {
 
@@ -17,19 +19,34 @@ final class CLoudCoordinatorTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testUploadTasks() async throws {
+        let coordinator = CloudCoordinator.preview
+        let context = NSManagedObjectContext.preview
+        let tasks: [TaskItem] = [
+            .checkWaterSupply(in: context),
+            .conductSoilAnalysis(in: context)
+        ]
+
+        try await coordinator.uploadTaskItems(tasks)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testUploadTasksMustFail() async throws {
+        let coordinator = CloudCoordinator(ClientFailing())
+        let context = NSManagedObjectContext.preview
+        let tasks: [TaskItem] = [
+            .checkWaterSupply(in: context),
+            .conductSoilAnalysis(in: context)
+        ]
+        do {
+            try await coordinator.uploadTaskItems(tasks)
+            XCTFail("Expeted upload task item to fail")
+        } catch ApiError.notAuthorized {
+            XCTAssert(true)
+        } catch {
+            XCTFail("Unexpected error type")
         }
     }
+
+
 
 }
