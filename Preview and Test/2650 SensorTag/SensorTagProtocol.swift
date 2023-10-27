@@ -15,6 +15,9 @@ protocol SensorTagProtocol {
     var battery: Double { get }
     var buttons: SensorTagButtonState { get }
     var lux: AsyncStream<Double> { get }
+    var irTemperature: AsyncStream<Double> { get }
+    var humidity: AsyncStream<Double> { get }
+    var pressur: AsyncStream<Double> { get }
     var gyroscope: AsyncStream<SIMD3<Double>> { get }
 
 

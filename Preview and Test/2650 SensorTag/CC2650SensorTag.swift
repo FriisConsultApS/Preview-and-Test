@@ -56,6 +56,51 @@ import SwiftUI
         }
     }
 
+    var irTemperature: AsyncStream<Double> {
+        AsyncStream { continuation in
+            self.irTemperatureContinuation = continuation
+            continuation.onTermination = { _ in
+                try? self.irTemperatureStream(on: false)
+            }
+            do {
+                try self.irTemperatureStream(on: true)
+            } catch {
+                debugLog.error("\(error.localizedDescription, privacy: .public)")
+                continuation.finish()
+            }
+        }
+    }
+
+    var humidity: AsyncStream<Double> {
+        AsyncStream { continuation in
+            self.humidityContinuation = continuation
+            continuation.onTermination = { _ in
+                try? self.humidityStream(on: false)
+            }
+            do {
+                try self.humidityStream(on: true)
+            } catch {
+                debugLog.error("\(error.localizedDescription, privacy: .public)")
+                continuation.finish()
+            }
+        }
+    }
+
+    var pressur: AsyncStream<Double> {
+        AsyncStream { continuation in
+            self.pressureContinuation = continuation
+            continuation.onTermination = { _ in
+                try? self.pressureStream(on: false)
+            }
+            do {
+                try self.pressureStream(on: true)
+            } catch {
+                debugLog.error("\(error.localizedDescription, privacy: .public)")
+                continuation.finish()
+            }
+        }
+    }
+
     private var peripheral: CBPeripheral
     private var initContinuation: CheckedContinuation<Void, Error>?
 
@@ -67,10 +112,28 @@ import SwiftUI
     private var opticalPeriod: CBCharacteristic?
     private var luxContinuation: AsyncStream<Double>.Continuation?
 
+
     private var motionData: CBCharacteristic?
     private var motionConfiguration: CBCharacteristic?
     private var motionPeriod: CBCharacteristic?
     private var gyroscopeContinuation: AsyncStream<SIMD3<Double>>.Continuation?
+
+
+    private var irTemperatureData: CBCharacteristic?
+    private var irTemperatureConfiguration: CBCharacteristic?
+    private var irTemperaturePeriod: CBCharacteristic?
+    private var irTemperatureContinuation: AsyncStream<Double>.Continuation?
+
+    private var humidityData: CBCharacteristic?
+    private var humidityConfiguration: CBCharacteristic?
+    private var humidityPeriod: CBCharacteristic?
+    private var humidityContinuation: AsyncStream<Double>.Continuation?
+    
+    private var pressureData: CBCharacteristic?
+    private var pressureConfiguration: CBCharacteristic?
+    private var pressurePeriod: CBCharacteristic?
+    private var pressureContinuation: AsyncStream<Double>.Continuation?
+
 
     internal let debugLog: Logger = .init(subsystem: Bundle.main.bundleIdentifier!, category: "\(CC2650SensorTag.self)")
 
@@ -126,6 +189,43 @@ import SwiftUI
         peripheral.writeValue(.tenthSecond, for: motionPeriod, type: .withResponse)
         debugLog.info("should be set")
     }
+
+
+    private func irTemperatureStream(on: Bool) throws {
+        guard let irTemperatureConfiguration,
+              let irTemperaturePeriod,
+              let irTemperatureData else {
+            throw CC2650Error.noCharacteristics
+        }
+        peripheral.setNotifyValue(on, for: irTemperatureData)
+        peripheral.writeValue(on ? .on : .off, for: irTemperatureConfiguration, type: .withResponse)
+        peripheral.writeValue(.tenthSecond, for: irTemperaturePeriod, type: .withResponse)
+    }
+
+    private func humidityStream(on: Bool) throws {
+        guard let humidityConfiguration,
+              let humidityPeriod,
+              let humidityData else {
+            throw CC2650Error.noCharacteristics
+        }
+        peripheral.setNotifyValue(on, for: humidityData)
+        peripheral.writeValue(on ? .on : .off, for: humidityConfiguration, type: .withResponse)
+        peripheral.writeValue(.tenthSecond, for: humidityPeriod, type: .withResponse)
+    }
+
+    private func pressureStream(on: Bool) throws {
+        guard let pressureConfiguration,
+              let pressurePeriod,
+              let pressureData else {
+            throw CC2650Error.noCharacteristics
+        }
+        peripheral.setNotifyValue(on, for: pressureData)
+        peripheral.writeValue(on ? .on : .off, for: pressureConfiguration, type: .withResponse)
+        peripheral.writeValue(.tenthSecond, for: pressurePeriod, type: .withResponse)
+    }
+
+
+
 }
 
 
@@ -166,6 +266,8 @@ extension CC2650SensorTag: CBPeripheralDelegate {
         if let motionService = services.first(where: {$0.uuid == .movementService}) {
             peripheral.discoverCharacteristics([.movementData, .movementConfig, .movementPeriod], for: motionService)
         }
+
+        // TODO: implement irTemperature, Pressure and Humidity....
     }
 
 

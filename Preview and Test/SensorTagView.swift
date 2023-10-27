@@ -10,7 +10,10 @@ import Charts
 
 struct SensorTagView: View {
     var sensorTag: any SensorTagProtocol
-    @State private var data: [LuxOverTime] = []
+    @State private var luxOverTime: [ValueOverTime] = []
+    @State private var temperatureOverTime: [ValueOverTime] = []
+    @State private var humidityOverTime: [ValueOverTime] = []
+    @State private var pressureOverTime: [ValueOverTime] = []
     @State private var gyroscope: SIMD3<Double> = .zero
 
 
@@ -25,10 +28,19 @@ struct SensorTagView: View {
                 .frame(maxWidth: .infinity)
 
             Chart {
-                ForEach(data, id: \.timeStamp) { item in
+                ForEach(luxOverTime, id: \.timeStamp) { item in
                     LineMark(x: .value("timestamp", item.timeStamp),
-                             y: .value("lux", item.lux),
+                             y: .value("lux", item.value),
                              series: .value("Sensor", "Optical"))
+                }
+                ForEach(humidityOverTime, id: \.timeStamp) { humidity in
+                    LineMark(x:.value("timestamp", humidity.timeStamp),
+                             y: .value("humidity", humidity.value))
+                }
+
+                ForEach(temperatureOverTime, id:\.timeStamp) { temperature in
+                    BarMark(x: .value("timestamp", temperature.timeStamp),
+                            y: .value("°c", temperature.value))
                 }
 
             }
@@ -45,9 +57,9 @@ struct SensorTagView: View {
             Task {
                 for await lux in sensorTag.lux {
                     withAnimation {
-                        data.append(.init(timeStamp: .now, lux: lux))
-                        if data.count  > 100 {
-                            data.removeFirst()
+                        luxOverTime.append(.init(timeStamp: .now, value: lux))
+                        if luxOverTime.count  > 100 {
+                            luxOverTime.removeFirst()
                         }
 
                     }
@@ -60,13 +72,44 @@ struct SensorTagView: View {
                     }
                 }
             }
+
+            Task {
+                for await temperature in sensorTag.irTemperature {
+                    withAnimation {
+                        self.temperatureOverTime.append(.init(timeStamp: .now, value: temperature))
+                        if temperatureOverTime.count > 100 {
+                            temperatureOverTime.removeFirst()
+                        }
+                    }
+                }
+            }
+
+            Task {
+                for await humidity in sensorTag.humidity {
+                    withAnimation {
+                        self.humidityOverTime.append(.init(timeStamp: .now, value: humidity))
+                        if humidityOverTime.count > 100 {
+                            humidityOverTime.removeFirst()
+                        }
+                    }
+                }
+            }
+
+            Task {
+                for await pressure in sensorTag.pressur {
+                    self.pressureOverTime.append(.init(timeStamp: .now, value: pressure))
+                    if pressureOverTime.count > 100 {
+                        pressureOverTime.removeFirst()
+                    }
+                }
+            }
         }
     }
 }
 
-struct LuxOverTime {
+struct ValueOverTime {
     var timeStamp: Date
-    var lux: Double
+    var value: Double
 }
 
 #Preview {
