@@ -21,7 +21,7 @@ final class CLoudCoordinatorTests: XCTestCase {
 
     func testUploadTasks() async throws {
         let coordinator = CloudCoordinator.preview
-        let context = NSManagedObjectContext.preview
+        let context = NSManagedObjectContext.emptyPreview
         let tasks: [TaskItem] = [
             .checkWaterSupply(in: context),
             .conductSoilAnalysis(in: context)
@@ -32,7 +32,7 @@ final class CLoudCoordinatorTests: XCTestCase {
 
     func testUploadTasksMustFail() async throws {
         let coordinator = CloudCoordinator(ClientFailing())
-        let context = NSManagedObjectContext.preview
+        let context = NSManagedObjectContext.emptyPreview
         let tasks: [TaskItem] = [
             .checkWaterSupply(in: context),
             .conductSoilAnalysis(in: context)

@@ -14,7 +14,7 @@ struct TaskItemView: View {
 
     @State var item: TaskItem
     @State private var showList = false
-    @State private var sensor: (any SensorTagProtocol)?
+    @State private var sensor: (any SensorDeviceProtocol)?
 
     var body: some View {
 

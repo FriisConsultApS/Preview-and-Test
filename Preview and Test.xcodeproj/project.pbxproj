@@ -23,7 +23,7 @@
 		DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA92AD32DE300F57272 /* TaskItemCell.swift */; };
 		DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */; };
 		DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAF2AD3C92500F57272 /* DeviceController.swift */; };
-		DA281FB22AD3C9EF00F57272 /* SensorTagProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */; };
+		DA281FB22AD3C9EF00F57272 /* SensorDeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB12AD3C9EF00F57272 /* SensorDeviceProtocol.swift */; };
 		DA281FB42AD3EC7400F57272 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */; };
 		DA281FB62AD3F29A00F57272 /* CC2650SensorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */; };
 		DA34CF322AD56867004E6F79 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34CF312AD56867004E6F79 /* APIProtocol.swift */; };
@@ -40,6 +40,11 @@
 		DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA782AD435520024AF24 /* Data extensions.swift */; };
 		DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */; };
 		DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */; };
+		DAD79AE02B49A38F00E7D443 /* SensorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79ADF2B49A38F00E7D443 /* SensorOptions.swift */; };
+		DAD79AE22B49A3BF00E7D443 /* GestureSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE12B49A3BF00E7D443 /* GestureSensor.swift */; };
+		DAD79AE42B49A3E700E7D443 /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE32B49A3E700E7D443 /* BatteryStatus.swift */; };
+		DAD79AE62B49A41A00E7D443 /* DeviceButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE52B49A41A00E7D443 /* DeviceButtons.swift */; };
+		DAD79AE92B49CC7C00E7D443 /* ARViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +84,7 @@
 		DA281FA92AD32DE300F57272 /* TaskItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemCell.swift; sourceTree = "<group>"; };
 		DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
 		DA281FAF2AD3C92500F57272 /* DeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
-		DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagProtocol.swift; sourceTree = "<group>"; };
+		DA281FB12AD3C9EF00F57272 /* SensorDeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDeviceProtocol.swift; sourceTree = "<group>"; };
 		DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetooth.swift; sourceTree = "<group>"; };
 		DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CC2650SensorTag.swift; sourceTree = "<group>"; };
 		DA281FB72AD3F75700F57272 /* Preview-and-Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Preview-and-Test-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -95,9 +100,17 @@
 		DA34CF422AD586FA004E6F79 /* KeyChain PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain PropertyWrapper.swift"; sourceTree = "<group>"; };
 		DA34CF442AD5A2A3004E6F79 /* CLoudCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLoudCoordinatorTests.swift; sourceTree = "<group>"; };
 		DA34CF462AD5A803004E6F79 /* MainFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFunctionTest.swift; sourceTree = "<group>"; };
+		DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-wal"; sourceTree = "<group>"; };
+		DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-shm"; sourceTree = "<group>"; };
+		DA5B144F2B20C1AA00594E83 /* CoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreData.sqlite; sourceTree = "<group>"; };
 		DAA5BA782AD435520024AF24 /* Data extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data extensions.swift"; sourceTree = "<group>"; };
 		DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagPreview.swift; sourceTree = "<group>"; };
 		DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagView.swift; sourceTree = "<group>"; };
+		DAD79ADF2B49A38F00E7D443 /* SensorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOptions.swift; sourceTree = "<group>"; };
+		DAD79AE12B49A3BF00E7D443 /* GestureSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSensor.swift; sourceTree = "<group>"; };
+		DAD79AE32B49A3E700E7D443 /* BatteryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryStatus.swift; sourceTree = "<group>"; };
+		DAD79AE52B49A41A00E7D443 /* DeviceButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceButtons.swift; sourceTree = "<group>"; };
+		DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,12 +165,13 @@
 				DA281FB72AD3F75700F57272 /* Preview-and-Test-Info.plist */,
 				DA281F9D2AD318C400F57272 /* Model */,
 				DA281FAE2AD3C87C00F57272 /* Web API */,
-				DA281FAD2AD3C85100F57272 /* 2650 SensorTag */,
+				DA281FAD2AD3C85100F57272 /* SensorDevice */,
 				DA281F6E2AD30FA200F57272 /* PreviewAndTest.swift */,
 				DA281F702AD30FA200F57272 /* ContentView.swift */,
 				DA281FA92AD32DE300F57272 /* TaskItemCell.swift */,
 				DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */,
 				DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */,
+				DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */,
 				DA281F722AD30FA400F57272 /* Assets.xcassets */,
 				DA281FA42AD3205D00F57272 /* Utilities */,
 				DA281F742AD30FA400F57272 /* Preview Content */,
@@ -168,6 +182,8 @@
 		DA281F742AD30FA400F57272 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */,
+				DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */,
 				DA281F752AD30FA400F57272 /* Preview Assets.xcassets */,
 				DA281FA02AD31CF000F57272 /* tasks.json */,
 			);
@@ -208,6 +224,7 @@
 		DA281FA42AD3205D00F57272 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DA5B144F2B20C1AA00594E83 /* CoreData.sqlite */,
 				DA281FA52AD3207F00F57272 /* Codable utilities.swift */,
 				DA281FA72AD3277300F57272 /* Optional.swift */,
 				DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */,
@@ -218,15 +235,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		DA281FAD2AD3C85100F57272 /* 2650 SensorTag */ = {
+		DA281FAD2AD3C85100F57272 /* SensorDevice */ = {
 			isa = PBXGroup;
 			children = (
+				DAD79AE72B49A4B200E7D443 /* Protocol and definitions */,
 				DA281FAF2AD3C92500F57272 /* DeviceController.swift */,
-				DA281FB12AD3C9EF00F57272 /* SensorTagProtocol.swift */,
 				DA281FB52AD3F29A00F57272 /* CC2650SensorTag.swift */,
 				DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */,
 			);
-			path = "2650 SensorTag";
+			path = SensorDevice;
 			sourceTree = "<group>";
 		};
 		DA281FAE2AD3C87C00F57272 /* Web API */ = {
@@ -239,6 +256,18 @@
 				DA34CF3D2AD57874004E6F79 /* ClientFailing.swift */,
 			);
 			path = "Web API";
+			sourceTree = "<group>";
+		};
+		DAD79AE72B49A4B200E7D443 /* Protocol and definitions */ = {
+			isa = PBXGroup;
+			children = (
+				DA281FB12AD3C9EF00F57272 /* SensorDeviceProtocol.swift */,
+				DAD79AE52B49A41A00E7D443 /* DeviceButtons.swift */,
+				DAD79AE32B49A3E700E7D443 /* BatteryStatus.swift */,
+				DAD79AE12B49A3BF00E7D443 /* GestureSensor.swift */,
+				DAD79ADF2B49A38F00E7D443 /* SensorOptions.swift */,
+			);
+			path = "Protocol and definitions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,27 +403,32 @@
 			files = (
 				DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */,
 				DA281FA32AD31D8400F57272 /* TaskItemDTO.swift in Sources */,
+				DAD79AE02B49A38F00E7D443 /* SensorOptions.swift in Sources */,
 				DA281F7B2AD30FA400F57272 /* CoreData.xcdatamodeld in Sources */,
 				DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */,
 				DA34CF3A2AD57740004E6F79 /* Client.swift in Sources */,
 				DA34CF322AD56867004E6F79 /* APIProtocol.swift in Sources */,
+				DAD79AE22B49A3BF00E7D443 /* GestureSensor.swift in Sources */,
+				DAD79AE42B49A3E700E7D443 /* BatteryStatus.swift in Sources */,
 				DA281FB42AD3EC7400F57272 /* CoreBluetooth.swift in Sources */,
 				DA34CF3E2AD57874004E6F79 /* ClientFailing.swift in Sources */,
 				DA34CF402AD5799E004E6F79 /* CloudCoordinator.swift in Sources */,
 				DA34CF3C2AD57748004E6F79 /* ClientPreview.swift in Sources */,
 				DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */,
 				DA281F782AD30FA400F57272 /* Persistence.swift in Sources */,
+				DAD79AE62B49A41A00E7D443 /* DeviceButtons.swift in Sources */,
 				DA281F9F2AD318CF00F57272 /* TaskItem.swift in Sources */,
 				DA281F712AD30FA200F57272 /* ContentView.swift in Sources */,
 				DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */,
 				DA281FB62AD3F29A00F57272 /* CC2650SensorTag.swift in Sources */,
 				DA34CF362AD56F85004E6F79 /* UserProfile.swift in Sources */,
+				DAD79AE92B49CC7C00E7D443 /* ARViewDemo.swift in Sources */,
 				DA34CF432AD586FA004E6F79 /* KeyChain PropertyWrapper.swift in Sources */,
 				DA34CF342AD56F46004E6F79 /* Network.swift in Sources */,
 				DA34CF382AD56F8B004E6F79 /* ServerInfo.swift in Sources */,
 				DA281F6F2AD30FA200F57272 /* PreviewAndTest.swift in Sources */,
 				DA281FA82AD3277300F57272 /* Optional.swift in Sources */,
-				DA281FB22AD3C9EF00F57272 /* SensorTagProtocol.swift in Sources */,
+				DA281FB22AD3C9EF00F57272 /* SensorDeviceProtocol.swift in Sources */,
 				DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */,
 				DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */,
 				DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */,
@@ -570,6 +604,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Preview;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "In order to reconnect to your device when the app ins in the background";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "in order to conect to the sensor tag";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Just for the Argumented Reality fun";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -604,6 +639,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Preview;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "In order to reconnect to your device when the app ins in the background";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "in order to conect to the sensor tag";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Just for the Argumented Reality fun";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

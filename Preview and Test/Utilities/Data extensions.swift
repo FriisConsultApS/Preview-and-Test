@@ -18,13 +18,40 @@ extension Data {
 
     var hex: String { map { String(format: "%02X", $0)}.joined(separator: ":")}
 
+    /// as Int16 using big endian,
     var int16: Int16 {
-        let uint = uint16
-        return uint <= UInt16(Int16.max) ? Int16(uint) : Int16(uint - UInt16(Int16.max) - 1) + Int16.min
+        get throws {
+            let uint = try uint16
+            return uint <= UInt16(Int16.max) ? Int16(uint) : Int16(uint - UInt16(Int16.max) - 1) + Int16.min
+        }
+    }
+    
+    /// as Int16 using little endian, big endian is the default when calling this functions
+    var int16littleEndian: Int16 {
+        get throws {
+            let uint = try uint16LittleEndian
+            return uint <= UInt16(Int16.max) ? Int16(uint) : Int16(uint - UInt16(Int16.max) - 1) + Int16.min
+        }
     }
 
-    var uint16: UInt16 { withUnsafeBytes { $0.load(as: UInt16.self) } }
+    var uint16: UInt16 {
+        get throws  {
+            guard count == 2 else { throw DataError.parsing("\(self.hex) to UInt16") }
+            let array = Array(self)
+            return array.withUnsafeBytes{ $0.load(as: UInt16.self).bigEndian }
+        }
+    }
+    
+    var uint16LittleEndian: UInt16 {
+        get throws  {
+            guard count == 2 else { throw DataError.parsing("\(self.hex) to UInt16") }
+            let array = Array(self)
+            return array.withUnsafeBytes{ $0.load(as: UInt16.self).littleEndian }
+        }
+    }
+    
 
+    
     var int32: Int32 {
         let uint = uint32
         return uint <= UInt32(Int32.max) ? Int32(uint) : Int32(uint - UInt32(Int32.max) - 1) + Int32.min
@@ -35,6 +62,21 @@ extension Data {
     var float: Float {
         Float(bitPattern: UInt32(bigEndian: self.withUnsafeBytes { $0.load(as: UInt32.self) }))
     }
+}
+
+enum DataError: Error {
+    case parsing(String)
+}
+
+extension DataError: CustomStringConvertible, CustomDebugStringConvertible  {
+    var description: String {
+        switch self {
+        case let .parsing(message):
+            return message
+        }
+    }
+    
+    var debugDescription: String { description }
 }
 
 extension UInt8 {

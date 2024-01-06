@@ -35,24 +35,28 @@ extension TaskItem {
     /// predicate to apply for "completed task"
     static let isCompletedPredicate = NSPredicate(format: "isCompleted == true")
 
-
-    var dto: TaskItemDTO {
-        .init(name: name.orEmpty, 
-              details: details.orEmpty,
-              due: due.orDistanceFuture,
-              created: created.orNow,
-              rawPriority: Int(rawPriority),
-              isCompleted: isCompleted)
+    convenience init(_ dto: TaskItemDTO, insertInto context: NSManagedObjectContext) {
+        self.init(entity: TaskItem.entity(), insertInto: context)
+        self.dto = dto
     }
 
-    /// To update task item using the DTO
-    func update(_ dto: TaskItemDTO) {
-        name = dto.name
-        details = dto.details
-        due = Calendar.current.date(byAdding: .year, value: -30, to: dto.due)
-        created = Calendar.current.date(byAdding: .year, value: -30, to: dto.created)
-        rawPriority = Int16(dto.rawPriority)
-        isCompleted = dto.isCompleted
+    var dto: TaskItemDTO {
+        get {
+            .init(name: name.orEmpty,
+                  details: details.orEmpty,
+                  due: due.orDistanceFuture,
+                  created: created.orNow,
+                  rawPriority: Int(rawPriority),
+                  isCompleted: isCompleted)
+        }
+        set {
+            self.name = newValue.name
+            self.details = newValue.details
+            self.due = Calendar.current.date(byAdding: .year, value: -30, to: newValue.due)
+            self.created = Calendar.current.date(byAdding: .year, value: -30, to: newValue.created)
+            self.rawPriority = Int16(newValue.rawPriority)
+            self.isCompleted = newValue.isCompleted
+        }
     }
 
 

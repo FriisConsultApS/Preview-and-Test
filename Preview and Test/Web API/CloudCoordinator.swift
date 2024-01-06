@@ -87,8 +87,7 @@ import OSLog
     func downloadTasks(since: Date = .distantPast, to context: NSManagedObjectContext) async throws {
         let taskDtos = try await client.getTaskItems(since: since)
         for taskDto in taskDtos {
-            let taskitem = TaskItem(context: context)
-            taskitem.update(taskDto)
+            _ = TaskItem(taskDto, insertInto: context)
         }
         try context.save()
     }

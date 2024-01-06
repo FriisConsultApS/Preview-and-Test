@@ -26,7 +26,7 @@ import OSLog
 
     private let debugLog: Logger = .init(subsystem: Bundle.main.bundleIdentifier!, category: "\(DeviceController.self)")
 
-    private var connectionContinuation: CheckedContinuation<any SensorTagProtocol, Error>?
+    private var connectionContinuation: CheckedContinuation<any SensorDeviceProtocol, Error>?
 
     /// As we don't want the user to be prompted for BLE usage before the user is in need of the BLE, we don't setup the central
     /// before we need it
@@ -41,7 +41,7 @@ import OSLog
             return
         }
         debugLog.info("Start scan for services")
-        central.scanForPeripherals(withServices: nil)
+        central.scanForPeripherals(withServices: [CBUUID(string: "AA80")])
     }
 
     /// Async way of connecting to a SensorTag.
@@ -51,7 +51,7 @@ import OSLog
     /// - Parameter peripheral: A peripheral compatible with the SensorTagProtocol
     /// - Returns: A fully connected, discovered and ready to use device
     /// - Throws: ``DeviceControllerError`` and ``CC2650Error``
-    func connect(_ peripheral: CBPeripheral) async throws -> any SensorTagProtocol {
+    func connect(_ peripheral: CBPeripheral) async throws -> any SensorDeviceProtocol {
         guard let central else { throw DeviceControllerError.invalidCentral }
 
         guard peripherals.contains(where: {$0 == peripheral}) else {
@@ -59,7 +59,7 @@ import OSLog
         }
         central.stopScan()
 
-        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<any SensorTagProtocol, Error>) in
+        return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<any SensorDeviceProtocol, Error>) in
             connectionContinuation = continuation
             central.connect(peripheral)
         }
