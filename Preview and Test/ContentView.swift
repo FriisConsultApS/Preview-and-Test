@@ -6,122 +6,139 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 import AuthenticationServices
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(CloudCoordinator.self) private var cloudCoordinator
+    @Environment(\.modelContext) private var viewContext
+    @Environment(CloudCoordinator.self) private var cloud
 
-    @FetchRequest(
-        sortDescriptors: TaskItem.defaultSort,
-        animation: .default)
-    private var items: FetchedResults<TaskItem>
-
+    @Query(sort: \Assignment.due) var tasks: [Assignment]
+    
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        TaskItemView(item: item)
-                    } label: {
-                        TaskItemCell(item: item)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem {
-                    switch cloudCoordinator.authenticationStatus {
-                    case .unknown, .unauthorized:
-                        SignInWithAppleButton { request in
-                            request.requestedScopes = [.email, .fullName]
-                        } onCompletion: { result in
-                            switch result {
-                            case .success(let authorization):
-                                self.signIn(authorization)
-                            case .failure:
-                                break
-                            }
+            VStack {
+                List {
+                    ForEach(tasks) { item in
+                        NavigationLink(value: item) {
+                            AssignmentCellView(item: item)
                         }
-
-                    case .updating:
-                        ProgressView()
-
-
-                    default:
-                        EmptyView()
-
                     }
+                    .onDelete(perform: deleteItems)
                 }
-
+                          
+                if cloud.authenticationStatus == .unauthorized || cloud.authenticationStatus == .unknown {
+                    SignInWithAppleButton(onRequest: swaRequest, onCompletion:swaResult)
+                        .frame(maxHeight: 64)
+                        .padding()
+                } else if cloud.authenticationStatus == .updating {
+                    ProgressView("Signing in With Apple")
+                }
+                
+                
+            }
+            .navigationDestination(for: Assignment.self, destination: { assignment in
+                AssignmentView(item: assignment)
+            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("clear", systemImage: "trash", action: clearDatabase)
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                    Button("Add assignment", systemImage: "plus", action: addAssignments)
                 }
             }
-            Text("Select an item")
-        }
+        }        
         .accessibilityIdentifier("taskList")
     }
 
-    private func addItem() {
+    
+    /// Prepare the Sign in With Apple request
+    /// - Parameter request: the request setup
+    private func swaRequest(_ request: ASAuthorizationAppleIDRequest) {
+        request.requestedScopes = .none
+    }
+    
+    /// Handle the response from Sign in With Apple
+    /// - Parameter result: the result from the request
+    private func swaResult(result: (Result<ASAuthorization,Error>)) {
+        switch result {
+        case .success(let authorization):
+            cloud.signInWithApple(authorization)
+        case .failure:
+            break
+        }
+    }
+
+    /// Clear all data in the database
+    private func clearDatabase() {
+        try? viewContext.delete(model: Assignment.self)
+    }
+    
+    /// Load the files from the 3
+    private func addAssignments() {
         withAnimation {
             do {
-                let dtos = try [TaskItemDTO].load(filename: "tasks")
-                for dto in dtos {
-                    let taskItem = TaskItem(context: viewContext)
-                    taskItem.dto =  dto
-                    taskItem.isCompleted = false
+                let tasks = try [Assignment].load(filename: "assignments")
+                 for task in tasks {
+                    task.isCompleted = false
+                    viewContext.insert(task)
                 }
                 try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            } catch let error as NSError{
+                print(error.description)
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            for index in offsets {
+                viewContext.delete(tasks[index])
             }
         }
-    }
-
-    private func signIn(_ authorization: ASAuthorization) {
-        cloudCoordinator.signInWithApple(authorization)
     }
 }
 
 #Preview("Unauthorized") {
     ContentView()
-        .environment(\.managedObjectContext, .preview)
+        .modelContainer(for: Assignment.self, inMemory: true)
         .environment(CloudCoordinator.preview)
 }
 
 #Preview("Authorized") {
     ContentView()
-        .environment(\.managedObjectContext, .preview)
+        .modelContainer(for: Assignment.self, inMemory: true)
         .environment(CloudCoordinator.previewAuthorized)
 
 }
 
 #Preview("Updating") {
     ContentView()
-        .environment(\.managedObjectContext, .preview)
+        .modelContainer(for: Assignment.self, inMemory: true)
         .environment(CloudCoordinator.previewUpdating)
 
 }
+
+#Preview("With assignment") {
+    do {
+        let container = try ModelContainer(for: Assignment.self, configurations: .init(isStoredInMemoryOnly: true))
+        let assignments = try [Assignment].load(filename: "assignments")
+        for assignment in assignments {
+            container.mainContext.insert(assignment)
+        }
+        return ContentView()
+            .modelContainer(container)
+            .environment(CloudCoordinator.previewAuthorized)
+    } catch let error as NSError {
+        print(error.description)
+        print(error.userInfo)
+        fatalError(error.description)
+    }
+}
+

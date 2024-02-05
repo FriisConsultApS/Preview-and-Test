@@ -17,12 +17,23 @@ import AuthenticationServices
 
 
 protocol APIProtocol {
+    /// Some info from the server, version, availablility and other backend info
     var serverInfo: ServerInfo { get async throws }
+    
+    /// Information of the current user
     var userProfile: UserProfile { get async throws }
+    
+    /// Signin to the backend using apple id
     func signInWithAppel(_ auth: ASAuthorization) async throws -> UserProfile
-
-    func getTaskItems(since: Date) async throws -> [TaskItemDTO]
-    func postTaskItem(_ taskItem: TaskItemDTO) async throws
+    
+    /// Get all the assignment that has been updated since last update
+    /// - Parameter since: the date of last fetch
+    /// - Returns: A of Assignments
+    func getAssignments(since: Date) async throws -> [Assignment]
+    
+    /// Post a new assignment to the backen
+    /// - Parameter assignment: The new assignment
+    func post(_ assignment: Assignment) async throws
 }
 
 enum ApiError: Error {

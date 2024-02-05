@@ -8,6 +8,7 @@
 import Foundation
 import AuthenticationServices
 
+/// The Preview can be used for preview in SwiftUI and for runninng unit test
 struct ClientPreview: APIProtocol {
     var serverInfo: ServerInfo {
         get async throws {
@@ -28,11 +29,11 @@ struct ClientPreview: APIProtocol {
         .preview
     }
     
-    func getTaskItems(since: Date) async throws -> [TaskItemDTO] {
-        return try .load(filename: "tasks")
+    func getAssignments(since: Date) async throws -> [Assignment] {
+        return try .load(filename: "assignments")
     }
     
-    func postTaskItem(_ taskItem: TaskItemDTO) async throws {
+    func post(_ assignment: Assignment) async throws {
 
     }
 }

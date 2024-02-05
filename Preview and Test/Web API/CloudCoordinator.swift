@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import AuthenticationServices
-import CoreData
+import SwiftData
 import OSLog
 
 @Observable class CloudCoordinator {
@@ -18,6 +18,8 @@ import OSLog
     private(set) var authenticationStatus: AuthenticationStatus = .unknown
 
     private(set) var client: APIProtocol
+    private(set) var modelContainer: ModelContainer!
+    
     private let debugLog: Logger = .init(subsystem: Bundle.main.bundleIdentifier!, category: "\(CloudCoordinator.self)")
 
     @KeychainStored("appleId") private static var appleId: String?
@@ -53,8 +55,12 @@ import OSLog
             authenticationStatus = .unknown
         }
     }
-
-
+    
+    func setModelContainer(container: ModelContainer) {
+        modelContainer = container
+    }
+    
+    
     /// do the sign in to the backend
     /// - Parameter authorization: sign in with apple authorization
     func signInWithApple(_ authorization: ASAuthorization) {
@@ -74,20 +80,21 @@ import OSLog
         }
     }
 
-    /// upload a list of task items
+    /// upload a list of assignment items
     /// - note: this is not the way I usually would do it, but for the sample purpose it will work
-    /// - Parameter taskItems: list of tasks
-    func uploadTaskItems(_ taskItems: [TaskItem]) async throws {
-        for taskItem in taskItems {
-            try await client.postTaskItem(taskItem.dto)
+    /// - Parameter assignments: list of assignment
+    func uploadTaskItems(_ assignments: [Assignment]) async throws {
+        for assignment in assignments {
+            try await client.post(assignment)
         }
     }
 
 
-    func downloadTasks(since: Date = .distantPast, to context: NSManagedObjectContext) async throws {
-        let taskDtos = try await client.getTaskItems(since: since)
-        for taskDto in taskDtos {
-            _ = TaskItem(taskDto, insertInto: context)
+    func downloadTasks(since: Date = .distantPast) async throws {
+        let assignments = try await client.getAssignments(since: since)
+        let context = ModelContext(modelContainer)
+        for assignment in assignments {
+            context.insert(assignment)
         }
         try context.save()
     }

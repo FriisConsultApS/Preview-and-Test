@@ -13,8 +13,13 @@ extension Decodable {
     /// - Parameter url: the url for the file
     /// - Returns: Parsed version of the file
     static func load(_ url: URL) throws -> Self {
-        let data = try Data(contentsOf: url)
-        return try JSONDecoder().decode(Self.self, from: data)
+        do {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode(Self.self, from: data)
+        } catch let error as NSError {
+            print("\(error.description)")
+            throw error
+        }
     }
 
     
@@ -25,12 +30,20 @@ extension Decodable {
     ///   - bundle: if not using main bundle, you can pars another bundle
     /// - Throws: pars on the json decoder errors, or if the file is not in the bundle ``DecodableError/fileNotInBundle(_:)`` is thrown
     static func load(filename: String, ext: String = "json", from bundle: Bundle = .main) throws -> Self {
-        guard let url = bundle.url(forResource: filename, withExtension: ext) else {
+        guard let url = bundle.url(forResource: filename, withExtension: ext) else {     
+            print("\(filename).\(ext) was not found in the bundle")
             throw DecodableError.fileNotInBundle("\(filename).\(ext) was not found in the bundle")
         }
         return try load(url)
     }
+}
 
+extension Encodable {
+    var json: Data {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        return try! encoder.encode(self)
+    }
 }
 
 enum DecodableError: Error {

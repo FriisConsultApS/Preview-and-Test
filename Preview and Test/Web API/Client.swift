@@ -8,6 +8,7 @@
 import Foundation
 import AuthenticationServices
 
+/// This is a shell inplementatoin, as this project was not created with an actual backend.
 struct Client: APIProtocol {
     var serverInfo: ServerInfo {
         get async throws {
@@ -25,11 +26,11 @@ struct Client: APIProtocol {
         throw ApiError.notImplemented
     }
 
-    func getTaskItems(since: Date) async throws -> [TaskItemDTO] {
+    func getAssignments(since: Date) async throws -> [Assignment] {
         throw ApiError.notImplemented
     }
 
-    func postTaskItem(_ taskItem: TaskItemDTO) async throws {
+    func post(_ assignment: Assignment) async throws {
         throw ApiError.notImplemented
     }
 }

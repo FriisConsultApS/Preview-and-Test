@@ -11,17 +11,15 @@
 		DA281F712AD30FA200F57272 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F702AD30FA200F57272 /* ContentView.swift */; };
 		DA281F732AD30FA400F57272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA281F722AD30FA400F57272 /* Assets.xcassets */; };
 		DA281F762AD30FA400F57272 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA281F752AD30FA400F57272 /* Preview Assets.xcassets */; };
-		DA281F782AD30FA400F57272 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F772AD30FA400F57272 /* Persistence.swift */; };
-		DA281F7B2AD30FA400F57272 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */; };
 		DA281F8F2AD30FA400F57272 /* Preview_and_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F8E2AD30FA400F57272 /* Preview_and_TestUITests.swift */; };
 		DA281F912AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F902AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift */; };
-		DA281F9F2AD318CF00F57272 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F9E2AD318CF00F57272 /* TaskItem.swift */; };
-		DA281FA12AD31CF000F57272 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = DA281FA02AD31CF000F57272 /* tasks.json */; };
-		DA281FA32AD31D8400F57272 /* TaskItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */; };
+		DA281F9F2AD318CF00F57272 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281F9E2AD318CF00F57272 /* Assignment.swift */; };
+		DA281FA12AD31CF000F57272 /* assignments.json in Resources */ = {isa = PBXBuildFile; fileRef = DA281FA02AD31CF000F57272 /* assignments.json */; };
+		DA281FA32AD31D8400F57272 /* Assignment Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA22AD31D8400F57272 /* Assignment Utilities.swift */; };
 		DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA52AD3207F00F57272 /* Codable utilities.swift */; };
 		DA281FA82AD3277300F57272 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA72AD3277300F57272 /* Optional.swift */; };
-		DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA92AD32DE300F57272 /* TaskItemCell.swift */; };
-		DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */; };
+		DA281FAA2AD32DE300F57272 /* AssignmentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FA92AD32DE300F57272 /* AssignmentCellView.swift */; };
+		DA281FAC2AD32DEF00F57272 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAB2AD32DEF00F57272 /* AssignmentView.swift */; };
 		DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FAF2AD3C92500F57272 /* DeviceController.swift */; };
 		DA281FB22AD3C9EF00F57272 /* SensorDeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB12AD3C9EF00F57272 /* SensorDeviceProtocol.swift */; };
 		DA281FB42AD3EC7400F57272 /* CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */; };
@@ -37,6 +35,7 @@
 		DA34CF432AD586FA004E6F79 /* KeyChain PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34CF422AD586FA004E6F79 /* KeyChain PropertyWrapper.swift */; };
 		DA34CF452AD5A2A3004E6F79 /* CLoudCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34CF442AD5A2A3004E6F79 /* CLoudCoordinatorTests.swift */; };
 		DA34CF472AD5A803004E6F79 /* MainFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA34CF462AD5A803004E6F79 /* MainFunctionTest.swift */; };
+		DA9837E42B6FF87400D8B98A /* PersistentModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9837E32B6FF87400D8B98A /* PersistentModelContainer.swift */; };
 		DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA782AD435520024AF24 /* Data extensions.swift */; };
 		DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */; };
 		DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */; };
@@ -70,19 +69,17 @@
 		DA281F702AD30FA200F57272 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA281F722AD30FA400F57272 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA281F752AD30FA400F57272 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DA281F772AD30FA400F57272 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		DA281F7A2AD30FA400F57272 /* Preview_and_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Preview_and_Test.xcdatamodel; sourceTree = "<group>"; };
 		DA281F802AD30FA400F57272 /* Preview and TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preview and TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA281F8A2AD30FA400F57272 /* Preview and TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Preview and TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA281F8E2AD30FA400F57272 /* Preview_and_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_and_TestUITests.swift; sourceTree = "<group>"; };
 		DA281F902AD30FA400F57272 /* Preview_and_TestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview_and_TestUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		DA281F9E2AD318CF00F57272 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
-		DA281FA02AD31CF000F57272 /* tasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
-		DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemDTO.swift; sourceTree = "<group>"; };
+		DA281F9E2AD318CF00F57272 /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		DA281FA02AD31CF000F57272 /* assignments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = assignments.json; sourceTree = "<group>"; };
+		DA281FA22AD31D8400F57272 /* Assignment Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment Utilities.swift"; sourceTree = "<group>"; };
 		DA281FA52AD3207F00F57272 /* Codable utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable utilities.swift"; sourceTree = "<group>"; };
 		DA281FA72AD3277300F57272 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
-		DA281FA92AD32DE300F57272 /* TaskItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemCell.swift; sourceTree = "<group>"; };
-		DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
+		DA281FA92AD32DE300F57272 /* AssignmentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCellView.swift; sourceTree = "<group>"; };
+		DA281FAB2AD32DEF00F57272 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
 		DA281FAF2AD3C92500F57272 /* DeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
 		DA281FB12AD3C9EF00F57272 /* SensorDeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorDeviceProtocol.swift; sourceTree = "<group>"; };
 		DA281FB32AD3EC7400F57272 /* CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetooth.swift; sourceTree = "<group>"; };
@@ -103,6 +100,7 @@
 		DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-wal"; sourceTree = "<group>"; };
 		DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-shm"; sourceTree = "<group>"; };
 		DA5B144F2B20C1AA00594E83 /* CoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreData.sqlite; sourceTree = "<group>"; };
+		DA9837E32B6FF87400D8B98A /* PersistentModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentModelContainer.swift; sourceTree = "<group>"; };
 		DAA5BA782AD435520024AF24 /* Data extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data extensions.swift"; sourceTree = "<group>"; };
 		DAA5BA7A2AD450980024AF24 /* SensorTagPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagPreview.swift; sourceTree = "<group>"; };
 		DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorTagView.swift; sourceTree = "<group>"; };
@@ -163,17 +161,17 @@
 			children = (
 				DA34CF412AD584E1004E6F79 /* Preview and Test.entitlements */,
 				DA281FB72AD3F75700F57272 /* Preview-and-Test-Info.plist */,
+				DA281FA42AD3205D00F57272 /* Utilities */,
 				DA281F9D2AD318C400F57272 /* Model */,
 				DA281FAE2AD3C87C00F57272 /* Web API */,
 				DA281FAD2AD3C85100F57272 /* SensorDevice */,
 				DA281F6E2AD30FA200F57272 /* PreviewAndTest.swift */,
 				DA281F702AD30FA200F57272 /* ContentView.swift */,
-				DA281FA92AD32DE300F57272 /* TaskItemCell.swift */,
-				DA281FAB2AD32DEF00F57272 /* TaskItemView.swift */,
+				DA281FA92AD32DE300F57272 /* AssignmentCellView.swift */,
+				DA281FAB2AD32DEF00F57272 /* AssignmentView.swift */,
 				DAA5BA7C2AD4538B0024AF24 /* SensorTagView.swift */,
 				DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */,
 				DA281F722AD30FA400F57272 /* Assets.xcassets */,
-				DA281FA42AD3205D00F57272 /* Utilities */,
 				DA281F742AD30FA400F57272 /* Preview Content */,
 			);
 			path = "Preview and Test";
@@ -185,7 +183,7 @@
 				DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */,
 				DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */,
 				DA281F752AD30FA400F57272 /* Preview Assets.xcassets */,
-				DA281FA02AD31CF000F57272 /* tasks.json */,
+				DA281FA02AD31CF000F57272 /* assignments.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -211,12 +209,11 @@
 		DA281F9D2AD318C400F57272 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */,
-				DA281F772AD30FA400F57272 /* Persistence.swift */,
-				DA281F9E2AD318CF00F57272 /* TaskItem.swift */,
-				DA281FA22AD31D8400F57272 /* TaskItemDTO.swift */,
+				DA281F9E2AD318CF00F57272 /* Assignment.swift */,
+				DA281FA22AD31D8400F57272 /* Assignment Utilities.swift */,
 				DA34CF352AD56F85004E6F79 /* UserProfile.swift */,
 				DA34CF372AD56F8B004E6F79 /* ServerInfo.swift */,
+				DA9837E32B6FF87400D8B98A /* PersistentModelContainer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -376,7 +373,7 @@
 			files = (
 				DA281F762AD30FA400F57272 /* Preview Assets.xcassets in Resources */,
 				DA281F732AD30FA400F57272 /* Assets.xcassets in Resources */,
-				DA281FA12AD31CF000F57272 /* tasks.json in Resources */,
+				DA281FA12AD31CF000F57272 /* assignments.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,10 +398,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA281FAC2AD32DEF00F57272 /* TaskItemView.swift in Sources */,
-				DA281FA32AD31D8400F57272 /* TaskItemDTO.swift in Sources */,
+				DA281FAC2AD32DEF00F57272 /* AssignmentView.swift in Sources */,
+				DA281FA32AD31D8400F57272 /* Assignment Utilities.swift in Sources */,
 				DAD79AE02B49A38F00E7D443 /* SensorOptions.swift in Sources */,
-				DA281F7B2AD30FA400F57272 /* CoreData.xcdatamodeld in Sources */,
 				DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */,
 				DA34CF3A2AD57740004E6F79 /* Client.swift in Sources */,
 				DA34CF322AD56867004E6F79 /* APIProtocol.swift in Sources */,
@@ -415,9 +411,8 @@
 				DA34CF402AD5799E004E6F79 /* CloudCoordinator.swift in Sources */,
 				DA34CF3C2AD57748004E6F79 /* ClientPreview.swift in Sources */,
 				DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */,
-				DA281F782AD30FA400F57272 /* Persistence.swift in Sources */,
 				DAD79AE62B49A41A00E7D443 /* DeviceButtons.swift in Sources */,
-				DA281F9F2AD318CF00F57272 /* TaskItem.swift in Sources */,
+				DA281F9F2AD318CF00F57272 /* Assignment.swift in Sources */,
 				DA281F712AD30FA200F57272 /* ContentView.swift in Sources */,
 				DAA5BA7B2AD450980024AF24 /* SensorTagPreview.swift in Sources */,
 				DA281FB62AD3F29A00F57272 /* CC2650SensorTag.swift in Sources */,
@@ -429,8 +424,9 @@
 				DA281F6F2AD30FA200F57272 /* PreviewAndTest.swift in Sources */,
 				DA281FA82AD3277300F57272 /* Optional.swift in Sources */,
 				DA281FB22AD3C9EF00F57272 /* SensorDeviceProtocol.swift in Sources */,
+				DA9837E42B6FF87400D8B98A /* PersistentModelContainer.swift in Sources */,
 				DAA5BA792AD435520024AF24 /* Data extensions.swift in Sources */,
-				DA281FAA2AD32DE300F57272 /* TaskItemCell.swift in Sources */,
+				DA281FAA2AD32DE300F57272 /* AssignmentCellView.swift in Sources */,
 				DAA5BA7D2AD4538B0024AF24 /* SensorTagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,19 +770,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DA281F792AD30FA400F57272 /* CoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DA281F7A2AD30FA400F57272 /* Preview_and_Test.xcdatamodel */,
-			);
-			currentVersion = DA281F7A2AD30FA400F57272 /* Preview_and_Test.xcdatamodel */;
-			path = CoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DA281F632AD30FA200F57272 /* Project object */;
 }

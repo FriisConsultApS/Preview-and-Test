@@ -8,6 +8,7 @@
 import Foundation
 import AuthenticationServices
 
+/// This is to ensure that we can request error and thereby handle errors accordantly
 struct ClientFailing: APIProtocol {
     var serverInfo: ServerInfo {
         get async throws {
@@ -26,11 +27,11 @@ struct ClientFailing: APIProtocol {
         throw ApiError.notAuthorized
     }
     
-    func getTaskItems(since: Date) async throws -> [TaskItemDTO] {
+    func getAssignments(since: Date) async throws -> [Assignment] {
         throw ApiError.notAuthorized
     }
     
-    func postTaskItem(_ taskItem: TaskItemDTO) async throws {
+    func post(_ assignment: Assignment) async throws {
         throw ApiError.notAuthorized
     }
 }

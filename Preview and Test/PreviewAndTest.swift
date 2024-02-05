@@ -6,19 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PreviewAndTest: App {
-    private let persistenceController = PersistenceController.embedded
-    private let deviceController = DeviceController()
-    private let cloudCoordinator = CloudCoordinator()
-
+    
+    private var deviceController = DeviceController()
+    private var cloudCoordinator = CloudCoordinator()
+    private var sharedModelContainer = PersistentModelContainer.sharedModelContainer
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(deviceController)
-                .environment(cloudCoordinator)
         }
+        .modelContainer(sharedModelContainer)
+        .environment(deviceController)
+        .environment(cloudCoordinator)
+    }
+    
+    init() {
+        cloudCoordinator.setModelContainer(container: sharedModelContainer)
     }
 }

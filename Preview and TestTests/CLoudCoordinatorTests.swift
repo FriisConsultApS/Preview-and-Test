@@ -6,36 +6,30 @@
 //
 
 import XCTest
-import CoreData
+import SwiftData
 @testable import Preview_and_Test
 
 final class CLoudCoordinatorTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testUploadTasks() async throws {
-        let coordinator = CloudCoordinator.preview
-        let context = NSManagedObjectContext.emptyPreview
-        let tasks: [TaskItem] = [
-            .checkWaterSupply(in: context),
-            .conductSoilAnalysis(in: context)
+        let cloud = CloudCoordinator.preview
+        let tasks: [Assignment] = [
+            .checkWaterSupply,
+            .conductSoilAnalysis
         ]
-
-        try await coordinator.uploadTaskItems(tasks)
+        do {
+            try await cloud.uploadTaskItems(tasks)
+        } catch {
+            XCTAssert(false, "Error uploading task items")
+        }
+        
     }
 
     func testUploadTasksMustFail() async throws {
         let coordinator = CloudCoordinator(ClientFailing())
-        let context = NSManagedObjectContext.emptyPreview
-        let tasks: [TaskItem] = [
-            .checkWaterSupply(in: context),
-            .conductSoilAnalysis(in: context)
+        let tasks: [Assignment] = [
+            .checkWaterSupply,
+            .conductSoilAnalysis
         ]
         do {
             try await coordinator.uploadTaskItems(tasks)
@@ -46,7 +40,4 @@ final class CLoudCoordinatorTests: XCTestCase {
             XCTFail("Unexpected error type")
         }
     }
-
-
-
 }
