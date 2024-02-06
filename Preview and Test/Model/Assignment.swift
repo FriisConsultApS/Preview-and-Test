@@ -68,7 +68,6 @@ class Assignment: Codable {
         try container.encode(isCompleted, forKey: .isCompleted)
     }
     
-    
     enum CodingKeys: String, CodingKey {
         case id
         case name

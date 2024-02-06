@@ -60,6 +60,8 @@ struct AssignmentCellView: View {
                 AssignmentCellView(item: assignment)
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(Image(.base2))
            
     } catch let error as NSError {
         fatalError(error.description)

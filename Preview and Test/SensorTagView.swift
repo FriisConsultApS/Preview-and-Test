@@ -35,25 +35,34 @@ struct SensorTagView: View {
                         Text(sensorTag.firmwareRevision)
                     }
                     Text(sensorTag.hardwareRevision)
-                    
+    
                 }
-                .border(.yellow)
+                .padding()
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
             } label: {
-                
-                Image(systemName: "i.circle")
-                    .frame(maxWidth: .infinity)
+                HStack {
+                    Spacer()
+                    Image(systemName: "i.circle")
+                        .padding(4)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                    Spacer()
+                }
             }
             
             HStack {
                 Text(batteryState.value.formatted(.percent))
                 batteryState.image
             }
+            .padding()
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
             
             button.image
                 .imageScale(.large)
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity)
+                .frame(height: 64)
                 .animation(.easeIn, value: button.rawValue)
+        
             
             
             Chart {
@@ -61,33 +70,25 @@ struct SensorTagView: View {
                     LineMark(x: .value("timestamp", item.timeStamp),
                              y: .value("lux", item.value),
                              series: .value("Sensor", "Optical"))
+                    .foregroundStyle(.yellow)
+                    
                 }
                 
                 ForEach(humidityOverTime, id: \.timeStamp) { humidity in
                     LineMark(x:.value("timestamp", humidity.timeStamp),
                              y: .value("humidity", humidity.value))
+                    .foregroundStyle(.red)
                 }
                 
                 ForEach(pressureOverTime, id:\.timeStamp) { temperature in
                     BarMark(x: .value("timestamp", temperature.timeStamp),
                             y: .value("°c", temperature.value))
+                    .foregroundStyle(.purple)
                 }
                 
             }
             .animation(.default, value: update)
-            
-            ARViewContainer(rotation: SIMD3<Float>(x: Float(gyroscope.x), y: Float(gyroscope.y), z: Float(gyroscope.z)))
-                
-            
-//            Image(systemName: "cube")
-//                .imageScale(.large)
-//                .font(.largeTitle)
-//                .rotation3DEffect(.degrees(gyroscope.x),axis: (x:1.0, y: 0.0, z: 0.0))
-//                .rotation3DEffect(.degrees(gyroscope.y),axis: (x:0.0, y: 1.0, z: 0.0))
-//                .rotation3DEffect(.degrees(gyroscope.z),axis: (x:0.0, y: 0.0, z: 1.0))
-//                .animation(.default, value: gyroscope)
-            
-            
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
         }
         .task {
             Task {
@@ -137,6 +138,13 @@ struct ValueOverTime {
     var value: Double
 }
 
-#Preview {
+#Preview("Clean") {
     SensorTagView(sensorTag: SensorTagPreview())
 }
+
+#Preview("with image backgound") {
+    
+    SensorTagView(sensorTag: SensorTagPreview())
+        .background(Assignment.checkWaterSupply.image)
+}
+

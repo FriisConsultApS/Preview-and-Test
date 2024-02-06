@@ -44,6 +44,10 @@
 		DAD79AE42B49A3E700E7D443 /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE32B49A3E700E7D443 /* BatteryStatus.swift */; };
 		DAD79AE62B49A41A00E7D443 /* DeviceButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE52B49A41A00E7D443 /* DeviceButtons.swift */; };
 		DAD79AE92B49CC7C00E7D443 /* ARViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */; };
+		DAF4D7D42B7144E50037E38E /* ApiAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D7D32B7144E50037E38E /* ApiAuthResponse.swift */; };
+		DAF4D7D82B714A6A0037E38E /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D7D72B714A6A0037E38E /* ApiError.swift */; };
+		DAF4D7DB2B714B1B0037E38E /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = DAF4D7DA2B714B1B0037E38E /* JWTDecode */; };
+		DAF4D7DD2B714C1F0037E38E /* ApiServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D7DC2B714C1F0037E38E /* ApiServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +113,9 @@
 		DAD79AE32B49A3E700E7D443 /* BatteryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryStatus.swift; sourceTree = "<group>"; };
 		DAD79AE52B49A41A00E7D443 /* DeviceButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceButtons.swift; sourceTree = "<group>"; };
 		DAD79AE82B49CC7C00E7D443 /* ARViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewDemo.swift; sourceTree = "<group>"; };
+		DAF4D7D32B7144E50037E38E /* ApiAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthResponse.swift; sourceTree = "<group>"; };
+		DAF4D7D72B714A6A0037E38E /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		DAF4D7DC2B714C1F0037E38E /* ApiServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF4D7DB2B714B1B0037E38E /* JWTDecode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,9 +254,11 @@
 		DA281FAE2AD3C87C00F57272 /* Web API */ = {
 			isa = PBXGroup;
 			children = (
+				DAF4D7D22B7144C20037E38E /* ApiModel */,
 				DA34CF3F2AD5799E004E6F79 /* CloudCoordinator.swift */,
 				DA34CF312AD56867004E6F79 /* APIProtocol.swift */,
 				DA34CF392AD57740004E6F79 /* Client.swift */,
+				DAF4D7DC2B714C1F0037E38E /* ApiServer.swift */,
 				DA34CF3B2AD57748004E6F79 /* ClientPreview.swift */,
 				DA34CF3D2AD57874004E6F79 /* ClientFailing.swift */,
 			);
@@ -267,6 +277,15 @@
 			path = "Protocol and definitions";
 			sourceTree = "<group>";
 		};
+		DAF4D7D22B7144C20037E38E /* ApiModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAF4D7D32B7144E50037E38E /* ApiAuthResponse.swift */,
+				DAF4D7D72B714A6A0037E38E /* ApiError.swift */,
+			);
+			path = ApiModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +302,9 @@
 			dependencies = (
 			);
 			name = "Preview and Test";
+			packageProductDependencies = (
+				DAF4D7DA2B714B1B0037E38E /* JWTDecode */,
+			);
 			productName = "Preview and Test";
 			productReference = DA281F6B2AD30FA200F57272 /* Preview and Test.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +377,9 @@
 				Base,
 			);
 			mainGroup = DA281F622AD30FA200F57272;
+			packageReferences = (
+				DAF4D7D92B714B1B0037E38E /* XCRemoteSwiftPackageReference "JWTDecode" */,
+			);
 			productRefGroup = DA281F6C2AD30FA200F57272 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -401,6 +426,7 @@
 				DA281FAC2AD32DEF00F57272 /* AssignmentView.swift in Sources */,
 				DA281FA32AD31D8400F57272 /* Assignment Utilities.swift in Sources */,
 				DAD79AE02B49A38F00E7D443 /* SensorOptions.swift in Sources */,
+				DAF4D7D42B7144E50037E38E /* ApiAuthResponse.swift in Sources */,
 				DA281FB02AD3C92500F57272 /* DeviceController.swift in Sources */,
 				DA34CF3A2AD57740004E6F79 /* Client.swift in Sources */,
 				DA34CF322AD56867004E6F79 /* APIProtocol.swift in Sources */,
@@ -410,6 +436,8 @@
 				DA34CF3E2AD57874004E6F79 /* ClientFailing.swift in Sources */,
 				DA34CF402AD5799E004E6F79 /* CloudCoordinator.swift in Sources */,
 				DA34CF3C2AD57748004E6F79 /* ClientPreview.swift in Sources */,
+				DAF4D7D82B714A6A0037E38E /* ApiError.swift in Sources */,
+				DAF4D7DD2B714C1F0037E38E /* ApiServer.swift in Sources */,
 				DA281FA62AD3207F00F57272 /* Codable utilities.swift in Sources */,
 				DAD79AE62B49A41A00E7D443 /* DeviceButtons.swift in Sources */,
 				DA281F9F2AD318CF00F57272 /* Assignment.swift in Sources */,
@@ -770,6 +798,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DAF4D7D92B714B1B0037E38E /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DAF4D7DA2B714B1B0037E38E /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAF4D7D92B714B1B0037E38E /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA281F632AD30FA200F57272 /* Project object */;
 }

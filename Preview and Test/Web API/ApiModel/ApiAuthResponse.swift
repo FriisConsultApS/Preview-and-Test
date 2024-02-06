@@ -6,10 +6,29 @@
 //
 
 import Foundation
+import JWTDecode
+
 
 struct ApiAuthResponse: Decodable {
     let tokenType: String
-    let authorizationToken: String
+    let authorizationToken: JsonWebToken
     let refreshToken: String
     let expiration: Date
+}
+
+
+typealias JsonWebToken = String
+
+extension JsonWebToken {
+    var expired: Bool {
+        do {
+            return try decode(jwt: self).expired
+        } catch {
+            return true
+        }
+    }
+    
+    var bearer: String {
+        "bearer \(self)"
+    }
 }

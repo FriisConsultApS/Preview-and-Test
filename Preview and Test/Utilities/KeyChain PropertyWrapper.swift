@@ -41,7 +41,7 @@ import Security
     }
 
     private func keychainData(forKey key: String) -> Data? {
-        var query = keychainQuery(forKey: key)
+        let query = keychainQuery(forKey: key)
         var result: AnyObject?
         let status = withUnsafeMutablePointer(to: &result) {
             SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))

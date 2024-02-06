@@ -54,7 +54,7 @@ import CoreBluetooth
     init() {
         self.batteryContinuation.yield(.notCharging(batteryLevel))
         self.buttonsContinuation.yield([])
-        startTheFun()
+      //  startTheFun()
     }
 
     /// Just so you can see how cool we can make the preview.

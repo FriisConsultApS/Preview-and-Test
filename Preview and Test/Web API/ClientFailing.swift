@@ -13,26 +13,26 @@ struct ClientFailing: APIProtocol {
     var serverInfo: ServerInfo {
         get async throws {
             try await Task.sleep(nanoseconds: 2_000_000)
-            throw ApiError.notAuthorized
+            throw ApiError.unauthorized
         }
     }
 
     var userProfile: UserProfile {
         get async throws {
-            throw ApiError.notAuthorized
+            throw ApiError.unauthorized
         }
     }
 
     func signInWithAppel(_ auth: ASAuthorization) async throws -> UserProfile {
-        throw ApiError.notAuthorized
+        throw ApiError.unauthorized
     }
     
     func getAssignments(since: Date) async throws -> [Assignment] {
-        throw ApiError.notAuthorized
+        throw ApiError.unauthorized
     }
     
     func post(_ assignment: Assignment) async throws {
-        throw ApiError.notAuthorized
+        throw ApiError.unauthorized
     }
 }
 

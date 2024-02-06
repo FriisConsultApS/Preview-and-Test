@@ -35,8 +35,3 @@ protocol APIProtocol {
     /// - Parameter assignment: The new assignment
     func post(_ assignment: Assignment) async throws
 }
-
-enum ApiError: Error {
-    case notAuthorized
-    case notImplemented
-}

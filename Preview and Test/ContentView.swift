@@ -26,6 +26,7 @@ struct ContentView: View {
                     }
                     .onDelete(perform: deleteItems)
                 }
+                .scrollContentBackground(.hidden)
                           
                 if cloud.authenticationStatus == .unauthorized || cloud.authenticationStatus == .unknown {
                     SignInWithAppleButton(onRequest: swaRequest, onCompletion:swaResult)
@@ -37,6 +38,7 @@ struct ContentView: View {
                 
                 
             }
+            .background(Image(.base))
             .navigationDestination(for: Assignment.self, destination: { assignment in
                 AssignmentView(item: assignment)
             })
