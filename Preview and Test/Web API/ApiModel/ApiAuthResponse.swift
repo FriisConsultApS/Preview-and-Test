@@ -9,13 +9,13 @@ import Foundation
 import JWTDecode
 
 
+/// The response coming from the server when authorising
 struct ApiAuthResponse: Decodable {
     let tokenType: String
     let authorizationToken: JsonWebToken
     let refreshToken: String
     let expiration: Date
 }
-
 
 typealias JsonWebToken = String
 

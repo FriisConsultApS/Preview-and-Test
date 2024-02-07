@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+/// this is just do make the App more lean to read.
 struct PersistentModelContainer {
     static var sharedModelContainer: ModelContainer = {
         let schema = Schema([

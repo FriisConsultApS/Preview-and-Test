@@ -18,20 +18,24 @@ class Client: APIProtocol {
 
     var userProfile: UserProfile {
         get async throws {
-            throw ApiError.notImplemented
+            let data = try await apiEndPoint(apiComponents: .users, .profile)
+            return try JSONDecoder().decode(UserProfile.self, from: data)
         }
     }
 
     func signInWithAppel(_ auth: ASAuthorization) async throws -> UserProfile {
-        throw ApiError.notImplemented
+        let data = try await apiEndPoint(method: .POST, apiComponents: .authenticate, .signInWithApple, authorize: false)
+        self.authResponse = try JSONDecoder().decode(ApiAuthResponse.self, from: data)
+        return try await userProfile
     }
 
     func getAssignments(since: Date) async throws -> [Assignment] {
-        throw ApiError.notImplemented
+        let data = try await apiEndPoint(apiComponents: .assignments)
+        return try JSONDecoder().decode([Assignment].self, from: data)
     }
 
     func post(_ assignment: Assignment) async throws {
-        throw ApiError.notImplemented
+        try await apiEndPoint(method: .POST, apiComponents: .assignments, form: assignment)
     }
     
     
@@ -41,6 +45,7 @@ class Client: APIProtocol {
     
     private let urlSession = URLSession.shared
     
+    /// Holds the response from authorization on backend
     private var authResponse: ApiAuthResponse? {
         didSet {
             authTokenKeyChain = authResponse?.authorizationToken
@@ -48,7 +53,8 @@ class Client: APIProtocol {
         }
     }
     
-    private var authToken: String? {
+    /// return a valid authorization token, if the token has expired, it will try to refresh the doken
+    private var authToken: JsonWebToken? {
         get async throws {
             guard let authToken = authResponse?.authorizationToken,
                   !authToken.isEmpty,
@@ -68,9 +74,17 @@ class Client: APIProtocol {
     }
     
     
-    /// Standard implemtation of the url request/session returning the data
-    @discardableResult
-    private func apiEndPoint(method: ApiMethod = .GET, apiComponents: ApiComponent..., form: Encodable? = nil, header: [String: String]? = nil, since: Date? = nil, authorize: Bool = true) async throws -> Data {
+    /// Standard implementation of the URL requstt
+    /// - Parameters:
+    ///   - method: Http Method for the endpoint, default is  .GET, other helper values is ``ApiMethod``
+    ///   - apiComponents: a list of parth elements, eg. /users/gdpr would be .users, .gdpr and the static will be definded as ``ApiComponent``
+    ///   - form: any endodable object, if needed for the call
+    ///   - header: Dictionary of header, note, this is not reversed as the actual addValue.forHTTPHeaderField
+    ///   - since: this value will be added to a header field, with the same name, formatted as ISO8601
+    ///   - authorize: if the authorization/ standard JWT is to be in the header, this is default true, as it is only for signin it is omittetd
+    /// - Returns: Data data returned from the endpoint
+    /// - Throws: There is an extension on ``HTTPURLResponse`` that returns the response as an error. other errors thrown from the system calls is also carried on
+    @discardableResult private func apiEndPoint(method: ApiMethod = .GET, apiComponents: ApiComponent..., form: Encodable? = nil, header: [String: String]? = nil, since: Date? = nil, authorize: Bool = true) async throws -> Data {
         do {
             let authToken: String?
             if authorize {
@@ -98,7 +112,6 @@ class Client: APIProtocol {
             if let authToken {
                 urlRequest.addValue(authToken.bearer, forHTTPHeaderField: .authorization)
             }
-            
             
             urlRequest.httpBody = form?.json
             if let header {

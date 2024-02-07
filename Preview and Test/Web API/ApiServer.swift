@@ -51,9 +51,12 @@ extension ApiMethod {
 }
 
 typealias ApiComponent = String
-
 extension ApiComponent {
     static let authenticate = "authenticate"
+    static let assignments = "assignments"
+    static let signInWithApple = "signinwithapple"
+    static let users = "users"
+    static let profile = "profile"
 }
 
 
@@ -63,7 +66,7 @@ extension String {
     static let refreshToken = "refreshToken"
     
     static let apiKeyName = "x-api-key"
-    static let apiKey = "This is not the way to store api key"
+    static let apiKey = "This is not the way to store api key, only for demo"
     
     static let applicationJson = "application/json"
     static let contentType = "Content-Type"

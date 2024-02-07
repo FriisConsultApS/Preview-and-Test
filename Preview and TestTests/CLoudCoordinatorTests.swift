@@ -34,7 +34,7 @@ final class CLoudCoordinatorTests: XCTestCase {
         do {
             try await coordinator.uploadTaskItems(tasks)
             XCTFail("Expeted upload task item to fail")
-        } catch ApiError.notAuthorized {
+        } catch ApiError.unauthorized {
             XCTAssert(true)
         } catch {
             XCTFail("Unexpected error type")

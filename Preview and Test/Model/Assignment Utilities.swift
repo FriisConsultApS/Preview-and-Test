@@ -9,7 +9,9 @@ import Foundation
 import SwiftData
 import SwiftUI
 
+/// this is the extensions to the model, handling a lot of other stuff
 extension Assignment {
+    /// ReadOnly image, based on the binary image that might have been stored in ``Assignment/imageData``
     var image: Image {
         if let data = imageData, let img = UIImage(data: data) {
             return Image(uiImage: img)
@@ -17,6 +19,21 @@ extension Assignment {
         return Image(systemName: "globe")
     }
     
+    
+    /// Update self with new values
+    /// - Parameter updatedAssignment: update assignment
+    func update(_ updatedAssignment: Assignment) {
+        guard id == updatedAssignment.id else { return }
+        self.name = updatedAssignment.name
+        self.details = updatedAssignment.details
+        self.due = updatedAssignment.due
+        self.created = updatedAssignment.created
+        self.priority = updatedAssignment.priority
+        self.isCompleted = updatedAssignment.isCompleted
+        self.imageData = updatedAssignment.imageData
+    }
+    
+    /// convenience sort descriptor and predicate
     static let defaultSort = SortDescriptor<Assignment>(\.due, order: .forward)
     static let openPredicate = #Predicate<Assignment>{ $0.isCompleted == false }
     static let completedPredicate = #Predicate<Assignment>{ $0.isCompleted }

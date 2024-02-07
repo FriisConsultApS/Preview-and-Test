@@ -10,6 +10,7 @@ import SwiftData
 import SwiftUI
 import UIKit
 
+/// The main model for tha app
 @Model
 class Assignment: Codable {
     var id: UUID
@@ -39,6 +40,8 @@ class Assignment: Codable {
             self.imageData = png
         }
     }
+    
+    // MARK: - Custom Codable implementation
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -79,6 +82,8 @@ class Assignment: Codable {
         case imageName
     }
     
+    // MARK: -
+    /// Please note that usign enums in Models is not as straight forward as you might think
     enum Priority: String, Codable {
         case low
         case medium

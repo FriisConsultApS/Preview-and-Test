@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Just a struct, not currently used in the demo app
 struct UserProfile: Codable {
     var userId: String
     var givenName: String

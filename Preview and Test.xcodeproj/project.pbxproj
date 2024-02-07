@@ -101,8 +101,6 @@
 		DA34CF422AD586FA004E6F79 /* KeyChain PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain PropertyWrapper.swift"; sourceTree = "<group>"; };
 		DA34CF442AD5A2A3004E6F79 /* CLoudCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLoudCoordinatorTests.swift; sourceTree = "<group>"; };
 		DA34CF462AD5A803004E6F79 /* MainFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFunctionTest.swift; sourceTree = "<group>"; };
-		DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-wal"; sourceTree = "<group>"; };
-		DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoreData.sqlite-shm"; sourceTree = "<group>"; };
 		DA5B144F2B20C1AA00594E83 /* CoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreData.sqlite; sourceTree = "<group>"; };
 		DA9837E32B6FF87400D8B98A /* PersistentModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentModelContainer.swift; sourceTree = "<group>"; };
 		DAA5BA782AD435520024AF24 /* Data extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data extensions.swift"; sourceTree = "<group>"; };
@@ -188,8 +186,6 @@
 		DA281F742AD30FA400F57272 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				DA5B144E2B20C1AA00594E83 /* CoreData.sqlite-shm */,
-				DA5B144D2B20C1AA00594E83 /* CoreData.sqlite-wal */,
 				DA281F752AD30FA400F57272 /* Preview Assets.xcassets */,
 				DA281FA02AD31CF000F57272 /* assignments.json */,
 			);

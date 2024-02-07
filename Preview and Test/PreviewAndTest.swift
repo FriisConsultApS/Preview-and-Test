@@ -25,6 +25,6 @@ struct PreviewAndTest: App {
     }
     
     init() {
-        cloudCoordinator.setModelContainer(container: sharedModelContainer)
+        cloudCoordinator.modelContainer = sharedModelContainer
     }
 }

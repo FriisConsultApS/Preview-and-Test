@@ -11,55 +11,55 @@ import AuthenticationServices
 import SwiftData
 import OSLog
 
+/// This coordinator, is the layer between the actual backend and the app.
+///
+/// The advantage of this, is that you can switch the ``CloudCoordinator/client`` around to use a mock of the backend, this is used for Preview and Test
 @Observable class CloudCoordinator {
     private(set) var user: UserProfile?
     private(set) var serverInfo: ServerInfo?
-
+    
     private(set) var authenticationStatus: AuthenticationStatus = .unknown
-
+    
     private(set) var client: APIProtocol
-    private(set) var modelContainer: ModelContainer!
+    var modelContainer: ModelContainer!
     
     private let debugLog: Logger = .init(subsystem: Bundle.main.bundleIdentifier!, category: "\(CloudCoordinator.self)")
-
+    
     @KeychainStored("appleId") private static var appleId: String?
-
-
+    
+    /// Initialize the Cloud coordinator
+    /// - Parameter client: connection to the backend
     init(_ client: APIProtocol = Client())  {
         self.client = client
-
-        if let appleId = Self.appleId {
-            authenticationStatus = .updating
-            Task {
+        Task {
+            self.serverInfo = try await client.serverInfo
+            
+            if let appleId = Self.appleId {
+                authenticationStatus = .updating
                 do {
                     let authState = try await ASAuthorizationAppleIDProvider()
                         .credentialState(forUserID: appleId)
                     switch authState {
-                    case .revoked, 
+                    case .revoked,
                             .notFound,
                             .transferred:
                         self.authenticationStatus = .unauthorized
-
+                        
                     case .authorized:
                         self.authenticationStatus = .authorized
                         self.user = try await client.userProfile
-
+                        
                     @unknown default:
                         fatalError()
                     }
                 } catch {
                     authenticationStatus = .unknown
                 }
+            } else {
+                authenticationStatus = .unknown
             }
-        } else {
-            authenticationStatus = .unknown
         }
     }
-    
-    func setModelContainer(container: ModelContainer) {
-        modelContainer = container
-    }
-    
     
     /// do the sign in to the backend
     /// - Parameter authorization: sign in with apple authorization
@@ -73,13 +73,13 @@ import OSLog
             do {
                 Self.appleId = credentials.user
                 authenticationStatus = .authorized
-                user = try await client.userProfile
+                user = try await client.signInWithAppel(authorization)
             } catch {
                 authenticationStatus = .unknown
             }
         }
     }
-
+    
     /// upload a list of assignment items
     /// - note: this is not the way I usually would do it, but for the sample purpose it will work
     /// - Parameter assignments: list of assignment
@@ -88,13 +88,19 @@ import OSLog
             try await client.post(assignment)
         }
     }
-
-
+    
+    
+    /// Download all tasks from the backend
+    /// - Parameter since: only download task that has been updated since ...
     func downloadTasks(since: Date = .distantPast) async throws {
         let assignments = try await client.getAssignments(since: since)
         let context = ModelContext(modelContainer)
         for assignment in assignments {
-            context.insert(assignment)
+            if let existing = context.model(for: assignment.id) as? Assignment {
+                existing.update(assignment)
+            } else {
+                context.insert(assignment)
+            }
         }
         try context.save()
     }
@@ -114,7 +120,7 @@ extension CloudCoordinator {
         coordinator.authenticationStatus = .authorized
         return coordinator
     }()
-
+    
     static let previewUpdating: CloudCoordinator = {
         let coordinator = CloudCoordinator(ClientPreview())
         coordinator.authenticationStatus = .updating
